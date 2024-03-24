@@ -1,0 +1,405 @@
+{
+	"info": {
+		"_postman_id": "279eb730-c92f-44c1-afcf-882f65dc2b03",
+		"name": "shopper profile",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33484787"
+	},
+	"item": [
+		{
+			"name": "register as shopper",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Generate a random email ID\r",
+							"function generateRandomEmail() {\r",
+							"    var chars = 'abcdefghijklmnopqrstuvwxyz0123456789';\r",
+							"    var domain = 'gmail.com';\r",
+							"    var email = '';\r",
+							"    for (var i = 0; i < 10; i++) {\r",
+							"        email += chars.charAt(Math.floor(Math.random() * chars.length));\r",
+							"    }\r",
+							"    email += '@' + domain;\r",
+							"    return email;\r",
+							"}\r",
+							"\r",
+							"var randomEmail = generateRandomEmail();\r",
+							"console.log(\"Random Email ID:\", randomEmail);\r",
+							"\r",
+							"// Set the generated email ID as an environment variable for later use\r",
+							"pm.globals.set(\"randomEmail\", randomEmail);\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"city\": \"Pune\",\r\n  \"country\": \"India\",\r\n  \"email\":\"{{randomEmail}}\",\r\n  \"firstName\": \"Chinmai\",\r\n  \"gender\": \"FEMALE\",\r\n  \"lastName\": \"Adhav\",\r\n  \"password\": \"chinu11\",\r\n  \"phone\": 7010845584,\r\n  \"state\": \"Maharashtra\",\r\n  \"zoneId\": \"ALPHA\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://www.shoppersstack.com/shopping/shoppers?zoneId=ALPHA",
+					"protocol": "https",
+					"host": [
+						"www",
+						"shoppersstack",
+						"com"
+					],
+					"path": [
+						"shopping",
+						"shoppers"
+					],
+					"query": [
+						{
+							"key": "zoneId",
+							"value": "ALPHA"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "regi1",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"city\": \"Pune\",\r\n  \"country\": \"India\",\r\n  \"email\":\"chinmaiadhav3@gmail.com\",\r\n  \"firstName\": \"Chinmai\",\r\n  \"gender\": \"FEMALE\",\r\n  \"lastName\": \"Adhav\",\r\n  \"password\": \"chinu11\",\r\n  \"phone\": 7010845584,\r\n  \"state\": \"Maharashtra\",\r\n  \"zoneId\": \"ALPHA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://www.shoppersstack.com/shopping/shoppers?zoneId=ALPHA",
+							"protocol": "https",
+							"host": [
+								"www",
+								"shoppersstack",
+								"com"
+							],
+							"path": [
+								"shopping",
+								"shoppers"
+							],
+							"query": [
+								{
+									"key": "zoneId",
+									"value": "ALPHA"
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 18 Mar 2024 11:20:19 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 201,\n    \"message\": \"Created\",\n    \"data\": {\n        \"userId\": 55039,\n        \"email\": \"chinmaiadhav3@gmail.com\",\n        \"role\": \"SHOPPER\",\n        \"status\": \"ACTIVE\",\n        \"createdDateTime\": null,\n        \"firstName\": \"Chinmai\",\n        \"lastName\": \"Adhav\",\n        \"city\": \"Banglore\",\n        \"state\": \"Karnataka\",\n        \"country\": \"India\",\n        \"zoneId\": \"ALPHA\",\n        \"imageId\": null,\n        \"jwtToken\": null\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"shopper id fetched\", function()\r",
+							"{ pm.globals.set(\"jwtToken\", pm.response.json().data.jwtToken); \r",
+							"  pm.globals.set(\"userId\", pm.response.json().data.userId )});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"{{randomEmail}}\",\r\n  \"password\": \"chinu11\",\r\n  \"role\": \"SHOPPER\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update the shopper Details",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"city\": \"Pune_satara\",\r\n  \"country\": \"India\",\r\n  \"email\":\"{{randomEmail}}\",\r\n  \"firstName\": \"Chinmai\",\r\n  \"gender\": \"FEMALE\",\r\n  \"lastName\": \"Adhav\",\r\n  \"password\": \"chinu11\",\r\n  \"phone\": 7010845584,\r\n  \"state\": \"Maharashtra\",\r\n  \"zoneId\": \"ALPHA\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/shoppers/55039",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shoppers",
+						"55039"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Shopper data by shopperId",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shoppers/{{userId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shoppers",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Genarates URL for forgot password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"Token\", pm.response.json().data.token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "email",
+						"value": "{{randomEmail}}",
+						"type": "text"
+					},
+					{
+						"key": "role",
+						"value": "{{ROLE}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/users/forgot-password",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"forgot-password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Resets the password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{Token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/users/reset-password",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"reset-password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set user password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "password",
+						"value": "chinu113344",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/users/verify-account?token={{Token}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"verify-account"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "{{Token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

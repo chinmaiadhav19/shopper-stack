@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "60753e16-2b53-4ae2-9f62-4b6c7ebf66cc",
+		"name": "Shopper wishlist",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33484787"
+	},
+	"item": [
+		{
+			"name": "Add a product to the wishlist",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"productId\": 5,\r\n  \"quantity\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/shoppers/{{userId}}/wishlist",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shoppers",
+						"{{userId}}",
+						"wishlist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all the products from wishlist",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shoppers/{{userId}}/wishlist",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shoppers",
+						"{{userId}}",
+						"wishlist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add another product",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/shoppers/{{userId}}/wishlist/5",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shoppers",
+						"{{userId}}",
+						"wishlist",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

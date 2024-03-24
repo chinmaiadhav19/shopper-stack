@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "9a0f9cf1-e033-4fa8-9c83-6ddf010b3fff",
+		"name": "Shopper Order",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33484787"
+	},
+	"item": [
+		{
+			"name": "Place order from cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"orderId\",pm.response.json().data.orderId);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"address\": {\r\n    \"addressId\": {{addressId}},\r\n    \"buildingInfo\": \"talkar apartment\",\r\n    \"city\": \"pune\",\r\n    \"country\": \"india\",\r\n    \"landmark\": \"kasba peth\",\r\n    \"name\": \"chinmai\",\r\n    \"phone\": \"7010845584\",\r\n    \"pincode\": \"432102\",\r\n    \"state\": \"maharashtra\",\r\n    \"streetInfo\": \"lane1\",\r\n    \"type\": \"Home\"\r\n  },\r\n  \"paymentMode\": \"COD\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/shoppers/{{userId}}/orders",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shoppers",
+						"{{userId}}",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Display order history",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shoppers/{{userId}}/orders",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shoppers",
+						"{{userId}}",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generate Invoice copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shoppers/{{userId}}/orders/15280/invoice",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shoppers",
+						"{{userId}}",
+						"orders",
+						"15280",
+						"invoice"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update order status",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "status",
+						"value": "DELIVERED",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/shoppers/{{userId}}/orders/{{orderId}}?status=DELIVERED",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shoppers",
+						"{{userId}}",
+						"orders",
+						"{{orderId}}"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "DELIVERED"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

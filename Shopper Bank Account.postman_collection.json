@@ -1,0 +1,158 @@
+{
+	"info": {
+		"_postman_id": "6025f855-0f59-4823-9f99-6ab23a6c639d",
+		"name": "Shopper Bank Account",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33484787"
+	},
+	"item": [
+		{
+			"name": "Get all bank account of shopper",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/bankaccounts?shopperId={{userId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"bankaccounts"
+					],
+					"query": [
+						{
+							"key": "shopperId",
+							"value": "{{userId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create bank account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/bankaccounts?bankName=ICD&email={{randomEmail}}&shopperId={{userId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"bankaccounts"
+					],
+					"query": [
+						{
+							"key": "bankName",
+							"value": "ICD"
+						},
+						{
+							"key": "email",
+							"value": "{{randomEmail}}"
+						},
+						{
+							"key": "shopperId",
+							"value": "{{userId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validates bank account credential",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"{{randomEmail}}\",\r\n  \"password\": \"BnG6ANL\",\r\n  \"role\": \"SHOPPER\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/bankaccounts/login?bankName=ICD",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"bankaccounts",
+						"login"
+					],
+					"query": [
+						{
+							"key": "bankName",
+							"value": "ICD"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update bank account balance",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/bankaccounts?action=CREDITED&amount=40000&number=641852964172",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"bankaccounts"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "CREDITED"
+						},
+						{
+							"key": "amount",
+							"value": "40000"
+						},
+						{
+							"key": "number",
+							"value": "641852964172"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,200 @@
+{
+	"info": {
+		"_postman_id": "0f309630-69f2-47ca-872f-94b666952fe2",
+		"name": "Shopper Bank Cards",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33484787"
+	},
+	"item": [
+		{
+			"name": "Creates the new card for a given bank",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"cardId\", pm.response.json().data.cardId);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/cards?bankName=ICD&cardType=CREDIT&email={{randomEmail}}&name=chinmai&shopperId={{userId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cards"
+					],
+					"query": [
+						{
+							"key": "bankName",
+							"value": "ICD"
+						},
+						{
+							"key": "cardType",
+							"value": "CREDIT"
+						},
+						{
+							"key": "email",
+							"value": "{{randomEmail}}"
+						},
+						{
+							"key": "name",
+							"value": "chinmai"
+						},
+						{
+							"key": "shopperId",
+							"value": "{{userId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validates bank card with amount",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"cardnumber\",pm.response.json().data.number);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"balance\": 100000.0,\r\n  \"bankName\": \"ICD\",\r\n  \"cardId\": {{cardId}},\r\n  \"cardType\": \"CREDIT\",\r\n  \"cvv\": 323,\r\n  \"email\": \"105diot1le@gmail.com\",\r\n  \"expiryDate\": \"3/29\",\r\n  \"nameOnCard\": \"chinmai\",\r\n  \"number\": \"4644578161238431\",\r\n  \"pin\": 1013,\r\n  \"shopperId\": {{userId}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/cards/transaction?amount=3000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cards",
+						"transaction"
+					],
+					"query": [
+						{
+							"key": "amount",
+							"value": "3000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validates bank card",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"balance\": 100000.0,\r\n  \"bankName\": \"ICD\",\r\n  \"cardId\": {{cardId}},\r\n  \"cardType\": \"CREDIT\",\r\n  \"cvv\": 323,\r\n  \"email\": \"105diot1le@gmail.com\",\r\n  \"expiryDate\": \"3/29\",\r\n  \"nameOnCard\": \"chinmai\",\r\n  \"number\": \"4644578161238431\",\r\n  \"pin\": 1013,\r\n  \"shopperId\": {{userId}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/cards/verify",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cards",
+						"verify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update card balance",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/cards?amount=4000&cardNumber={{cardnumber}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cards"
+					],
+					"query": [
+						{
+							"key": "amount",
+							"value": "4000"
+						},
+						{
+							"key": "cardNumber",
+							"value": "{{cardnumber}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

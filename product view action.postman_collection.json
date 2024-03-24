@@ -1,0 +1,105 @@
+{
+	"info": {
+		"_postman_id": "3aa5bba5-e1a0-4b51-8afc-0de12ef6568f",
+		"name": "product view action",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33484787"
+	},
+	"item": [
+		{
+			"name": "Returns all default products",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/products/alpha?zoneId=ALPHA",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products",
+						"alpha"
+					],
+					"query": [
+						{
+							"key": "zoneId",
+							"value": "ALPHA"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Returns all the products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/products?zoneId=ALPHA&token={{Token}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "zoneId",
+							"value": "ALPHA"
+						},
+						{
+							"key": "token",
+							"value": "{{Token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an added review",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/reviews/{{reviewId}}?productId=5",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"reviews",
+						"{{reviewId}}"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

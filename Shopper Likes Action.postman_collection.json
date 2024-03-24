@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "624e849f-ec00-4186-ae9a-fba8445fc01b",
+		"name": "Shopper Likes Action",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33484787"
+	},
+	"item": [
+		{
+			"name": "Returns all the likes of shopper",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shoppers/likes?shopperId={{userId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shoppers",
+						"likes"
+					],
+					"query": [
+						{
+							"key": "shopperId",
+							"value": "{{userId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update the shoppers like list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"MEN\": [\r\n    \"JACKETS\"\r\n  ],\r\n  \"WOMEN\": [\r\n    \"SAREES\"\r\n  ],\r\n  \"WOMEN\": [\r\n    \"LEHENGA CHOLIS\"\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/shoppers/likes?shopperId={{userId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shoppers",
+						"likes"
+					],
+					"query": [
+						{
+							"key": "shopperId",
+							"value": "{{userId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete the shoppers like list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shoppers/likes?shopperId={{userId}}&category=MEN",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shoppers",
+						"likes"
+					],
+					"query": [
+						{
+							"key": "shopperId",
+							"value": "{{userId}}"
+						},
+						{
+							"key": "category",
+							"value": "MEN"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

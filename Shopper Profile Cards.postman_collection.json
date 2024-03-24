@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "ec00abd9-6e5b-45df-a9ca-d8de10eaba3f",
+		"name": "Shopper Profile Cards",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33484787"
+	},
+	"item": [
+		{
+			"name": "Save the card data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cvv\": \"323\",\r\n  \"expiryDate\": \"3/29\",\r\n  \"id\": {{cardId}},\r\n  \"nameOnCard\": \"chinmai\",\r\n  \"number\": \"{{cardnumber}}\",\r\n  \"type\": \"DEBIT\",\r\n  \"userId\": {{userId}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/cards",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get the card data based on type",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/cards/{{userId}}?type=DEBIT",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cards",
+						"{{userId}}"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "DEBIT"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Returns all the shoppers cards",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shoppers/cards?cardType=DEBIT&shopperId={{userId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shoppers",
+						"cards"
+					],
+					"query": [
+						{
+							"key": "cardType",
+							"value": "DEBIT"
+						},
+						{
+							"key": "shopperId",
+							"value": "{{userId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete card data based on id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/cards/3256",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cards",
+						"3256"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

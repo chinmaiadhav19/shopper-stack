@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "30151219-3e6d-4eec-a38e-e922c3878001",
+		"name": "Shopper Product Review related",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33484787"
+	},
+	"item": [
+		{
+			"name": "Add a review to delivered product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"reviewId\",pm.response.json().data.reviewId);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"dateTime\": \"2024-03-20T11:27:07.383Z\",\r\n  \"description\": \"nice product\",\r\n  \"heading\": \"about product\",\r\n  \"rating\": 4,\r\n  \"shopperId\": {{userId}},\r\n  \"shopperName\": \"chinmai\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/reviews?productId=5",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"reviews"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all the reviews of a product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/reviews/5",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"reviews",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update an added review",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"dateTime\": \"2024-03-20T11:27:07.383Z\",\r\n  \"description\": \"nice product\",\r\n  \"heading\": \"about product\",\r\n  \"rating\": 4.5,\r\n  \"shopperId\": {{userId}},\r\n  \"shopperName\": \"chinmai\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/reviews/{{reviewId}}?productId=5",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"reviews",
+						"{{reviewId}}"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an added review",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/reviews/{{reviewId}}?productId=5",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"reviews",
+						"{{reviewId}}"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

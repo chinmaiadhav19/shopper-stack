@@ -1,0 +1,37 @@
+{
+	"info": {
+		"_postman_id": "ebadc449-8d9d-4439-9858-abd5a0ddf12a",
+		"name": "Bank action",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33484787"
+	},
+	"item": [
+		{
+			"name": "Returns all the available bank names",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/banks",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"banks"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

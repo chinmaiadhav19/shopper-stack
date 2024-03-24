@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "781911ac-a4ac-42bc-8134-a8fc5ac38a3d",
+		"name": "shopper address",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33484787"
+	},
+	"item": [
+		{
+			"name": "Add a new address",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"addressId\",pm.response.json().data.addressId);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"addressId\": 0,\r\n  \"buildingInfo\": \"talkar height\",\r\n  \"city\": \"pune\",\r\n  \"country\": \"india\",\r\n  \"landmark\":\"kasba peth\",\r\n  \"name\": \"chinmai\",\r\n  \"phone\": \"7010845584\",\r\n  \"pincode\": \"432102\",\r\n  \"state\": \"maharashtra\",\r\n  \"streetInfo\": \"near math\",\r\n  \"type\": \"Home\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/shoppers/{{userId}}/address",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shoppers",
+						"{{userId}}",
+						"address"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all the addresses",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shoppers/{{userId}}/address",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shoppers",
+						"{{userId}}",
+						"address"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a particular address by addressId",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shoppers/{{userId}}/address/{{addressId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shoppers",
+						"{{userId}}",
+						"address",
+						"{{addressId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update an added address",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"addressId\": 0,\r\n  \"buildingInfo\": \"talkar apartment\",\r\n  \"city\": \"pune\",\r\n  \"country\": \"india\",\r\n  \"landmark\":\"kasba peth\",\r\n  \"name\": \"chinmai\",\r\n  \"phone\": \"7010845584\",\r\n  \"pincode\": \"432102\",\r\n  \"state\": \"maharashtra\",\r\n  \"streetInfo\": \"near math\",\r\n  \"type\": \"Home\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/shoppers/{{userId}}/address/{{addressId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shoppers",
+						"{{userId}}",
+						"address",
+						"{{addressId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an address",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwtToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/shoppers/{{userId}}/address/{{addressId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"shoppers",
+						"{{userId}}",
+						"address",
+						"{{addressId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
